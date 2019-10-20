@@ -50,7 +50,7 @@
 import { of } from 'rxjs/observable/of';
 import { timer } from 'rxjs/observable/timer';
 import { mapTo } from 'rxjs/operators';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, discardPeriodicTasks, tick } from '@angular/core/testing';
 import { UsersComponent } from './users.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UserService } from '../../services/user.service';
@@ -94,4 +94,16 @@ describe('UsersComponent', () => {
       done();
     });
   });
+
+  it(`should have a list of users`, fakeAsync(() => {
+    const spy = spyOn(userService, 'getUsers').and.returnValue(timer(1000).pipe(mapTo([fakeUser])));
+    component.ngOnInit();
+    component.users$.subscribe(users => {
+      console.log(users);
+      expect(users).toEqual([fakeUser]);
+    });
+    tick(1000);
+
+    discardPeriodicTasks();
+  }));
 });
