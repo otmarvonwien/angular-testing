@@ -1,0 +1,2 @@
+[1020/210044.296:ERROR:file_io_win.cc(170)] CreateFile C:\Users\otmar\AppData\Local\Temp\karma-37402138\Crashpad\reports\914395a8-94b9-422a-a616-b197e5f2eaed.dmp: Das System kann den angegebenen Pfad nicht finden. (0x3)
+[1020/210044.303:ERROR:crash_report_exception_handler.cc(97)] PrepareNewCrashReport failed
